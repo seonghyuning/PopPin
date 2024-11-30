@@ -4,10 +4,18 @@
 <mapper namespace="net.developia.mapper.PopupStoreMapper">
 
     <!-- 팝업 스토어 등록 (status = 0) -->
+<<<<<<< HEAD
     <insert id="registerPopupStore" parameterType="net.developia.domain.PopUpStoreVO">
         INSERT INTO POPUPSTORES (STORE_ID, NAME, LOCATION, DESCRIPTION, START_DATE, END_DATE, VIEWS, CREATED_BY, STATUS)
     	VALUES (STORE_SEQ.NEXTVAL, #{name}, #{location}, #{description}, #{startDate}, #{endDate}, 0, #{createdBy}, 0)
     </insert>
+=======
+    <insert id="registerPopupStore" parameterType="net.developia.domain.PopUpStoreVO" useGeneratedKeys="true" keyProperty="storeId" keyColumn="STORE_ID">
+	    INSERT INTO POPUPSTORES (STORE_ID, NAME, LOCATION, DESCRIPTION, START_DATE, END_DATE, VIEWS, CREATED_BY, STATUS)
+	    VALUES (STORE_SEQ.NEXTVAL, #{name}, #{location}, #{description}, #{startDate}, #{endDate}, 0, #{createdBy}, 0)
+	</insert>
+
+>>>>>>> 845cf516ce67ee70448e3ede9ce74e069922f0f7
     
     <!-- 대기 팝업 목록 조회(status = 0) -->
     <select id="getPopupStoresByUser" parameterType="string" resultType="net.developia.domain.PopUpStoreVO">
@@ -38,10 +46,24 @@
     
     <!-- 사용자 팝업 상세 조회 -->
     <select id="getPopupStoreById" parameterType="long" resultType="net.developia.domain.PopUpStoreVO">
+<<<<<<< HEAD
         select * 
         from popupstores 
         where store_id = #{storeId}
     </select>
+=======
+        SELECT ps.*, img.file_path AS imagePath
+    	FROM popupstores ps
+    	LEFT JOIN images img ON ps.store_id = img.store_id
+    	WHERE ps.store_id = #{storeId, jdbcType=NUMERIC}
+    	ORDER BY ps.start_date DESC
+   	</select>
+    	
+<!--    select * 
+        from popupstores 
+        where store_id = #{storeId} -->
+    
+>>>>>>> 845cf516ce67ee70448e3ede9ce74e069922f0f7
     
     <!-- 팝업스토어 수정 -->
     <update id="updatePopupStore" parameterType="net.developia.domain.PopUpStoreVO">
@@ -57,6 +79,10 @@
         WHERE STORE_ID = #{storeId}
     </delete>
     
+<<<<<<< HEAD
     
     
 </mapper>
+=======
+</mapper>
+>>>>>>> 845cf516ce67ee70448e3ede9ce74e069922f0f7

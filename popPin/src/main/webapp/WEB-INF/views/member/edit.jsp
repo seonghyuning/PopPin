@@ -1,22 +1,30 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Edit My Information</title>
-</head>
-<body>
-    <h1>Edit Your Information</h1>
-    <form method="post" action="/member/edit">
-        <label for="nickname">Nickname:</label>
-        <input type="text" id="nickname" name="nickname" value="${user.nickname}" required>
-        <br>
-        <label for="email">Email:</label>
-        <input type="email" id="email" name="email" value="${user.email}" required>
-        <br>
-        <label for="password">Password (leave blank to keep current):</label>
-        <input type="password" id="password" name="password">
-        <br>
-        <button type="submit">Update</button>
-    </form>
-</body>
-</html>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+    <!DOCTYPE html>
+    <html lang="ko">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Poppin</title>
+        <link rel="stylesheet" href="/resources/css/list.css">
+    </head>
+
+    <body>
+        <%@ include file="../includes/header.jsp" %>
+            <form method="post" action="/member/edit" class="loginForm">
+                <h1 id="registerTitle">정보 수정</h1>
+                <label for="nickName">닉네임</label>
+                <input type="text" name="nickname" value="${user.nickname}" id="nickName">
+
+                <label for="userName">이메일</label>
+                <input type="text" name="email" value="${user.email}" id="userName" placeholder="sherlock_221b">
+
+                <label for="password">비밀번호</label>
+                <input type="password" id="password" name="password" value="${password}">
+
+                <br>
+                <button type="submit" class="loginBtn" id="registerBtn">수정 완료</button>
+            </form>
+    </body>
+
+    </html>

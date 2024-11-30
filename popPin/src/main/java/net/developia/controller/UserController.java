@@ -36,7 +36,8 @@ public class UserController {
 			boolean isAuthenticated = userService.authenticate(email, password);
 
 			if (isAuthenticated) {
-				return "member/mypage"; // 로그인 성공 후 마이페이지 
+				return "store/list";
+
 			} else {
 				model.addAttribute("error", "Invalid email or password");
 				return "member/login";
@@ -127,18 +128,18 @@ public class UserController {
 	@GetMapping("/mypage")
 	public String myPage(Model model) {
 		// 로그인된 사용자 정보 가져오기
-	    Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-	    String username = authentication.getName(); // 현재 로그인한 사용자의 username
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		String username = authentication.getName(); // 현재 로그인한 사용자의 username
 
-	    if (username != null && !username.equals("anonymousUser")) {
-	        UserDTO user = userService.getUserByUsername(username); // DB에서 사용자 정보 가져오기
-	        model.addAttribute("user", user);
-	        return "member/mypage";
-	    }
+		if (username != null && !username.equals("anonymousUser")) {
+			UserDTO user = userService.getUserByUsername(username); // DB에서 사용자 정보 가져오기
+			model.addAttribute("user", user);
+			return "member/mypage";
+		}
 
-	    // 로그인되지 않은 경우
-	    model.addAttribute("error", "You must be logged in to access this page.");
-	    return "member/login";
+		// 로그인되지 않은 경우
+		model.addAttribute("error", "You must be logged in to access this page.");
+		return "member/login";
 	}
 
 	// 내 정보 수정 페이지

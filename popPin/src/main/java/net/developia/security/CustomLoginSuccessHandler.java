@@ -14,15 +14,15 @@ import org.springframework.security.web.authentication.AuthenticationSuccessHand
 import lombok.extern.log4j.Log4j;
 
 @Log4j
-public class CustomLoginSuccessHandler implements AuthenticationSuccessHandler{
-   
+public class CustomLoginSuccessHandler implements AuthenticationSuccessHandler {
+
    @Override
    public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication auth)
          throws IOException, ServletException {
       log.warn("Login Success");
 
       List<String> roleNames = new ArrayList<>();
- 
+
       auth.getAuthorities().forEach(authority -> {
 
          roleNames.add(authority.getAuthority());
@@ -44,8 +44,7 @@ public class CustomLoginSuccessHandler implements AuthenticationSuccessHandler{
       }
 
       response.sendRedirect("/");
-   
 
-   }   
+   }
 
 }

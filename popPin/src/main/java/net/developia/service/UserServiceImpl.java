@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 
 import net.developia.domain.UserDTO;
 import net.developia.mapper.UserMapper;
- 
+
 @Service
 public class UserServiceImpl implements UserService {
 
@@ -19,20 +19,20 @@ public class UserServiceImpl implements UserService {
 
     @Autowired
     private PasswordEncoder passwordEncoder;
-    
+
     @Autowired
     private JavaMailSender mailSender;
 
     @Override
     public void register(UserDTO userDTO) {
-    	// 비밀번호 암호화
+        // 비밀번호 암호화
         userDTO.setPassword(passwordEncoder.encode(userDTO.getPassword()));
         // 활성화 상태 설정
         userDTO.setEnabled("1");
         // Provider 설정
         userDTO.setProvider("local");
         userDTO.setProviderId(null);
-        
+
         // 사용자 등록
         userMapper.insertUser(userDTO);
         // 권한 부여
@@ -41,7 +41,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public boolean authenticate(String email, String password) {
-    	UserDTO user = userMapper.findByEmail(email);
+        UserDTO user = userMapper.findByEmail(email);
 
         if (user != null) {
             return passwordEncoder.matches(password, user.getPassword()); // 비밀번호 일치 확인
@@ -70,7 +70,7 @@ public class UserServiceImpl implements UserService {
         }
         return false;
     }
-    
+
     @Override
     public void sendPasswordResetEmail(String email, String resetToken) {
         String resetUrl = "http://localhost/member/reset-password?token=" + resetToken;
@@ -82,11 +82,12 @@ public class UserServiceImpl implements UserService {
             message.setText("Click the following link to reset your password: " + resetUrl);
             mailSender.send(message); // 이메일 전송
         } catch (Exception e) {
-        	System.err.println("Error while sending email: " + e.getMessage());
+            System.err.println("Error while sending email: " + e.getMessage());
             e.printStackTrace();
             throw new RuntimeException("Failed to send email: " + e.getMessage(), e);
         }
     }
+
     @Override
     public UserDTO getUserByUsername(String username) {
         return userMapper.findByUsername(username);
@@ -103,5 +104,4 @@ public class UserServiceImpl implements UserService {
         userMapper.updateUserInfo(user);
     }
 
-    
 }
