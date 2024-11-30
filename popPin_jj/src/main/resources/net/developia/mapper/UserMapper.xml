@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="net.developia.mapper.UserMapper">
+
+	<insert id="insertUser">
+		INSERT INTO USERS (username, email, enabled,
+		nickname, password, provider,
+		provider_id)
+		VALUES (#{username},
+		#{email}, #{enabled}, #{nickname}, #{password},
+		#{provider}, null)
+	</insert>
+
+	<!-- 권한 삽입 -->
+	<insert id="insertAuthority">
+		INSERT INTO AUTHORITIES (username, authority)
+		VALUES
+		(#{username}, #{authority})
+	</insert>
+
+	<select id="findByEmail"
+		resultType="net.developia.domain.UserDTO">
+		SELECT username, email, enabled, nickname, password,
+		provider, provider_id
+		FROM USERS
+		WHERE email = #{email}
+	</select>
+
+	<select id="findByResetToken"
+		resultType="net.developia.domain.UserDTO">
+		SELECT username, email, enabled, nickname, password,
+		provider, provider_id
+		FROM USERS
+		WHERE reset_token = #{token}
+	</select>
+
+	<update id="updateResetToken">
+		UPDATE USERS
+		SET reset_token = #{token}
+		WHERE email =
+		#{email}
+	</update>
+
+	<update id="updatePassword">
+		UPDATE USERS
+		SET password = #{newPassword}
+		WHERE email
+		= #{email}
+	</update>
+
+	<!-- 사용자 정보 가져오기 -->
+	<select id="findByUsername"
+		resultType="net.developia.domain.UserDTO">
+		SELECT username, email, nickname, enabled, provider, provider_id
+		FROM USERS
+		WHERE username = #{username}
+	</select>
+
+	<!-- 사용자 정보 수정하기 -->
+	<update id="updateUserInfo">
+		UPDATE USERS
+		SET nickname = #{nickname}, email = #{email}, password = #{password}
+		WHERE username = #{username}
+	</update>
+
+</mapper>
