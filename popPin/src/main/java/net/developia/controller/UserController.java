@@ -172,11 +172,11 @@ public class UserController {
 					likedMap.put(store.getStoreId(), likeService.isLiked(like));
 				}
 			}
-			
+
 			// 관리자인지 여부 확인
-	        boolean isAdmin = userService.isAdmin(username);
-	        model.addAttribute("isAdmin", isAdmin); // 관리자 여부 모델에 추가
-	        System.out.println(isAdmin);
+			boolean isAdmin = userService.isAdmin(username);
+			model.addAttribute("isAdmin", isAdmin); // 관리자 여부 모델에 추가
+			System.out.println(isAdmin);
 
 			model.addAttribute("imagesMap", imagesMap);
 			model.addAttribute("stores", stores);

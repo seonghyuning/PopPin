@@ -10,6 +10,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
+
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -48,11 +49,11 @@ public class StoreController {
     @GetMapping("addstorelist")
     public String getPendingStores(Model model) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        
+
         if (!authentication.getAuthorities().contains(new SimpleGrantedAuthority("ROLE_ADMIN"))) {
             return "redirect:/store/list";
         }
-        
+
         List<PopUpStoreVO> stores = storeService.getAddStoreList();
         model.addAttribute("stores", stores);
         return "/store/addStoreList"; // 신청 목록을 보여줄 JSP
@@ -61,7 +62,7 @@ public class StoreController {
     @GetMapping("/approveReject")
     public String getAddStoreDetail(@RequestParam("storeId") Long storeId, Model model) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        
+
         if (!authentication.getAuthorities().contains(new SimpleGrantedAuthority("ROLE_ADMIN"))) {
             // 관리자가 아닌 경우, 접근을 제한합니다.
             return "redirect:/store/list"; // 권한 없음 페이지로 리다이렉트
@@ -71,7 +72,6 @@ public class StoreController {
         model.addAttribute("store", store);
         return "store/approveReject"; // 신청 상세 페이지로 이동
     }
-
 
     // 팝업스토어 승인/거절 처리
     @PostMapping("/approveReject")

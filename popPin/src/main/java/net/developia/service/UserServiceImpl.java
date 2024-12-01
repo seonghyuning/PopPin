@@ -101,7 +101,7 @@ public class UserServiceImpl implements UserService {
 
         userMapper.updateUserInfo(user);
     }
-    
+
     @Override
     public boolean isAdmin(String username) {
         // username을 이용해 관리자인지 확인
