@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="net.developia.mapper.PopupStoreMapper">
+
+    <!-- 팝업 스토어 등록 (status = 0) -->
+    <insert id="registerPopupStore" parameterType="net.developia.domain.PopUpStoreVO">
+        INSERT INTO POPUPSTORES (STORE_ID, NAME, LOCATION, DESCRIPTION, START_DATE, END_DATE, VIEWS, CREATED_BY, STATUS)
+    	VALUES (STORE_SEQ.NEXTVAL, #{name}, #{location}, #{description}, #{startDate}, #{endDate}, 0, #{createdBy}, 0)
+    </insert>
+    
+    <!-- 대기 팝업 목록 조회(status = 0) -->
+    <select id="getPopupStoresByUser" parameterType="string" resultType="net.developia.domain.PopUpStoreVO">
+        select *
+        from popupstores
+        where created_by = #{username} 
+          and status=0
+        order by start_date desc
+    </select>
+    
+    <!-- 승인 팝업 목록 조회(status = 1) -->
+    <select id="getApprovePopupStoresByUser" parameterType="string" resultType="net.developia.domain.PopUpStoreVO">
+        select *
+        from popupstores
+        where created_by = #{username} 
+          and status=1
+        order by start_date desc
+    </select>
+    
+    <!-- 거절 팝업 목록 조회(status=2) -->
+    <select id="getRejectedPopupStoresByUser" parameterType="string" resultType="net.developia.domain.PopUpStoreVO">
+        select *
+        from popupstores
+        where created_by = #{username} 
+          and status=2 
+        order by start_date desc
+    </select>
+    
+    <!-- 사용자 팝업 상세 조회 -->
+    <select id="getPopupStoreById" parameterType="long" resultType="net.developia.domain.PopUpStoreVO">
+        select * 
+        from popupstores 
+        where store_id = #{storeId}
+    </select>
+    
+    <!-- 팝업스토어 수정 -->
+    <update id="updatePopupStore" parameterType="net.developia.domain.PopUpStoreVO">
+        UPDATE POPUPSTORES
+        SET NAME = #{name}, LOCATION = #{location}, DESCRIPTION = #{description},
+            START_DATE = #{startDate}, END_DATE = #{endDate}, STATUS = #{status}
+        WHERE STORE_ID = #{storeId}
+    </update>
+
+    <!-- 팝업스토어 삭제 -->
+    <delete id="deletePopupStore" parameterType="java.lang.Long">
+        DELETE FROM POPUPSTORES 
+        WHERE STORE_ID = #{storeId}
+    </delete>
+    
+</mapper>
