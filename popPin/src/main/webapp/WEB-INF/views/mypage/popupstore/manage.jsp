@@ -5,7 +5,6 @@
 
 <!DOCTYPE html>
 <html lang="ko">
-
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -92,29 +91,28 @@ a {
 	font-size: 14px;
 	text-align: center;
 }
-
-.cardActions {
+.cardActions{
 	display: inline-flex;
 	justify-content: center;
 	margin-top: 10px;
-	float: right;
+	float:right;
 }
-
-#deleteBtn {
+#deleteBtn{
 	margin-right: 3px;
 }
 
-.popTitle {
+.popTitle{
 	margin-left: 9em;
 }
 
-#storeRegButton {
-	margin-left: 40em;
-	margin-top: 20px;
-	width: 35em;
+#storeRegButton{
+    margin-left: 40em;
+    margin-top : 20px;
+    width: 35em;
 }
-</style>
+}
 
+</style>
 <body>
 	<%@ include file="../../includes/header.jsp"%>
 	<div class="myInfoContainer">
@@ -132,37 +130,37 @@ a {
 			onclick="window.location.href='/member/mypage'">관심 팝업</button>
 		<div id="middleLine"></div>
 		<button class="myPageFilterBtn"
-			onclick="window.location.href='/mypage/popupstore/manage'">신청
-			팝업</button>
+			onclick="window.location.href='/mypage/popupstore/manage'">신청 팝업</button>
 	</div>
-	<button class="loginBtn" id="storeRegButton"
-		onclick="window.location.href='/mypage/popupstore/new'">내
-		팝업스토어 등록하기</button>
+			<button class="loginBtn" id="storeRegButton"
+			onclick="window.location.href='/mypage/popupstore/new'">내 팝업스토어 등록하기
+			</button>
 
 	<section class="popup-section">
 		<h2 class="popTitle">대기 중인 팝업스토어</h2>
 		<div class="cardListContainer">
 			<c:forEach items="${popupStores}" var="store">
-				<div class="cardListItem">
-					<img src="${store.imagePath}" alt="팝업 이미지" class="cardListImg">
-					<div class="cardContent">
-						<h3 class="cardTitle">${store.name}</h3>
+			    <div class="cardListItem">
+	               <!-- 이미지 출력 -->
+        			<img src="/image/${store.imageId}" alt="팝업 이미지" class="cardListImg">
+        				<div class="cardContent">
+			            <h3 class="cardTitle">${store.name}</h3>
 						<p class="locationText">
 							<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
 								fill="currentColor" class="bi bi-geo-alt-fill"
 								viewBox="0 0 16 16">
-												<path
+                                <path
 									d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10m0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6" />
-											</svg>${store.location}
+                            </svg>${store.location}
 						</p>
 						<span> <svg xmlns="http://www.w3.org/2000/svg" width="16"
 								height="16" fill="currentColor" class="bi bi-calendar-range"
 								viewBox="0 0 16 16">
-												<path
+                                <path
 									d="M9 7a1 1 0 0 1 1-1h5v2h-5a1 1 0 0 1-1-1M1 9h4a1 1 0 0 1 0 2H1z" />
-												<path
+                                <path
 									d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5M1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4z" />
-											</svg> <fmt:formatDate value="${store.startDate}"
+                            </svg> <fmt:formatDate value="${store.startDate}"
 								pattern="yyyy.MM.dd" /> ~ <fmt:formatDate
 								value="${store.endDate}" pattern="yyyy.MM.dd" />
 						</span></br>
@@ -178,7 +176,7 @@ a {
 							</form>
 						</div>
 					</div>
-
+					
 				</div>
 			</c:forEach>
 		</div>
@@ -190,25 +188,25 @@ a {
 			<div class="cardListContainer" onclick="">
 
 				<div class="cardListItem">
-					<img src="${store.imagePath}" alt="팝업 이미지" class="cardListImg">
-					<div class="cardContent">
+	               <!-- 이미지 출력 -->
+        			<img src="/image/${store.imageId}" alt="팝업 이미지" class="cardListImg">					<div class="cardContent">
 						<h3 class="cardTitle">${store.name}</h3>
 						<p class="locationText">
 							<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
 								fill="currentColor" class="bi bi-geo-alt-fill"
 								viewBox="0 0 16 16">
-												<path
+                    	<path
 									d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10m0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6" />
-											</svg>${store.location}
+                    </svg>${store.location}
 						</p>
 						<span><svg xmlns="http://www.w3.org/2000/svg" width="16"
 								height="16" fill="currentColor" class="bi bi-calendar-range"
 								viewBox="0 0 16 16">
-												<path
+                    <path
 									d="M9 7a1 1 0 0 1 1-1h5v2h-5a1 1 0 0 1-1-1M1 9h4a1 1 0 0 1 0 2H1z" />
-												<path
+                    <path
 									d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5M1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4z" />
-											</svg> <fmt:formatDate value="${store.startDate}"
+                  </svg> <fmt:formatDate value="${store.startDate}"
 								pattern="yyyy.MM.dd" /> ~ <fmt:formatDate
 								value="${store.endDate}" pattern="yyyy.MM.dd" /> </span>
 					</div>
@@ -217,21 +215,21 @@ a {
 						<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
 							fill="currentColor" class="bi bi-suit-heart-fill"
 							viewBox="0 0 16 16">
-											<path
+                <path
 								d="M4 1c2.21 0 4 1.755 4 3.92C8 2.755 9.79 1 12 1s4 1.755 4 3.92c0 3.263-3.234 4.414-7.608 9.608a.513.513 0 0 1-.784 0C3.234 9.334 0 8.183 0 4.92 0 2.755 1.79 1 4 1" />
-										</svg>
+              </svg>
 					</button>
 					<!-- 수정 및 삭제 버튼 -->
-					<div class="cardActions">
-						<button id="deleteBtn"
-							onclick="window.location.href='/mypage/popupstore/edit?storeId=${store.storeId}'">수정</button>
-						<form action="/mypage/popupstore/delete" method="post"
-							style="display: inline;">
-							<input type="hidden" name="storeId" value="${store.storeId}">
-							<button type="submit" id="deleteBtn"
-								onclick="return confirm('정말 삭제하시겠습니까?')">삭제</button>
-						</form>
-					</div>
+						<div class="cardActions">
+							<button id="deleteBtn"
+								onclick="window.location.href='/mypage/popupstore/edit?storeId=${store.storeId}'">수정</button>
+							<form action="/mypage/popupstore/delete" method="post"
+								style="display: inline;">
+								<input type="hidden" name="storeId" value="${store.storeId}">
+								<button type="submit" id="deleteBtn"
+									onclick="return confirm('정말 삭제하시겠습니까?')">삭제</button>
+							</form>
+						</div>
 				</div>
 		</c:forEach>
 	</section>
@@ -242,25 +240,25 @@ a {
 			<div class="cardListContainer" onclick="">
 
 				<div class="cardListItem">
-					<img src=${store.imagePath } " alt="팝업 이미지" class="cardListImg">
-					<div class="cardContent">
+	               <!-- 이미지 출력 -->
+        			<img src="/image/${store.imageId}" alt="팝업 이미지" class="cardListImg">					<div class="cardContent">
 						<h3 class="cardTitle">${store.name}</h3>
 						<p class="locationText">
 							<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
 								fill="currentColor" class="bi bi-geo-alt-fill"
 								viewBox="0 0 16 16">
-												<path
+                    	<path
 									d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10m0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6" />
-											</svg>${store.location}
+                    </svg>${store.location}
 						</p>
 						<span><svg xmlns="http://www.w3.org/2000/svg" width="16"
 								height="16" fill="currentColor" class="bi bi-calendar-range"
 								viewBox="0 0 16 16">
-												<path
+                    <path
 									d="M9 7a1 1 0 0 1 1-1h5v2h-5a1 1 0 0 1-1-1M1 9h4a1 1 0 0 1 0 2H1z" />
-												<path
+                    <path
 									d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5M1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4z" />
-											</svg> <fmt:formatDate value="${store.startDate}"
+                  </svg> <fmt:formatDate value="${store.startDate}"
 								pattern="yyyy.MM.dd" /> ~ <fmt:formatDate
 								value="${store.endDate}" pattern="yyyy.MM.dd" /> </span>
 					</div>
@@ -269,25 +267,24 @@ a {
 						<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
 							fill="currentColor" class="bi bi-suit-heart-fill"
 							viewBox="0 0 16 16">
-											<path
+                <path
 								d="M4 1c2.21 0 4 1.755 4 3.92C8 2.755 9.79 1 12 1s4 1.755 4 3.92c0 3.263-3.234 4.414-7.608 9.608a.513.513 0 0 1-.784 0C3.234 9.334 0 8.183 0 4.92 0 2.755 1.79 1 4 1" />
-										</svg>
+              </svg>
 					</button>
 					<!-- 수정 및 삭제 버튼 -->
-					<div class="cardActions">
-						<button id="deleteBtn"
-							onclick="window.location.href='/mypage/popupstore/edit?storeId=${store.storeId}'">수정</button>
-						<form action="/mypage/popupstore/delete" method="post"
-							style="display: inline;">
-							<input type="hidden" name="storeId" value="${store.storeId}">
-							<button type="submit" id="deleteBtn"
-								onclick="return confirm('정말 삭제하시겠습니까?')">삭제</button>
-						</form>
-					</div>
+						<div class="cardActions">
+							<button id="deleteBtn"
+								onclick="window.location.href='/mypage/popupstore/edit?storeId=${store.storeId}'">수정</button>
+							<form action="/mypage/popupstore/delete" method="post"
+								style="display: inline;">
+								<input type="hidden" name="storeId" value="${store.storeId}">
+								<button type="submit" id="deleteBtn"
+									onclick="return confirm('정말 삭제하시겠습니까?')">삭제</button>
+							</form>
+						</div>
 				</div>
 		</c:forEach>
 	</section>
 
 </body>
-
 </html>

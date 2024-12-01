@@ -1,4 +1,3 @@
-// 추가
 package net.developia.service;
 
 import java.util.List;
@@ -10,4 +9,5 @@ public interface ImageService {
     void deleteImage(Long imageId) throws Exception; // 이미지 id로 이미지 삭제
     void deleteImagesByStoreId(Long storeId) throws Exception; // 특정 팝업스토어의 모든 이미지 삭제
     List<ImageVO> getImagesByStoreId(Long storeId);  // 스토어 ID로 이미지 목록 조회
+    ImageVO getImageById(Long imageId); // 이미지 ID로 조회
 }

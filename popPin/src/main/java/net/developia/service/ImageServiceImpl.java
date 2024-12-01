@@ -61,4 +61,10 @@ public class ImageServiceImpl implements ImageService {
             throw e;
         }
     }
+    
+    // 이미지 id 조회
+    @Override
+    public ImageVO getImageById(Long imageId) {
+        return imageMapper.getImageById(imageId);
+    }
 }

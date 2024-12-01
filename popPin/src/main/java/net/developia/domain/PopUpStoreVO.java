@@ -16,7 +16,6 @@ public class PopUpStoreVO {
     private String createdBy; // 작성자 ID
     private int status; // 승인 여부 (0: 대기, 1: 승인, 2: 거절)
 
-    // 추가
-    private String imagePath; // 이미지 경로 추가
-
+    private String imagePath;  // 이미지 경로
+    private Long imageId; // 대표 이미지 ID
 }

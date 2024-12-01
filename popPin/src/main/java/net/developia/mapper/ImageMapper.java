@@ -19,6 +19,9 @@ public interface ImageMapper {
     
     // 스토어 ID로 이미지 조회
     List<ImageVO> getImagesByStoreId(Long storeId);
+    
+    // 이미지 ID로 이미지 조회
+    ImageVO getImageById(Long imageId);
 }
 
 

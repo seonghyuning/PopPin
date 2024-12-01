@@ -27,4 +27,9 @@
         SELECT * FROM IMAGES WHERE STORE_ID = #{storeId}
     </select>
     
+    <!-- 이미지 ID로 이미지 조회 -->
+    <select id="getImageById" parameterType="long" resultType="net.developia.domain.ImageVO">
+    	SELECT * FROM IMAGES WHERE IMAGE_ID = #{imageId}
+	</select>
+    
 </mapper>

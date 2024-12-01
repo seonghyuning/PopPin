@@ -75,13 +75,14 @@
 				for="startDate">시작 날짜</label> <input type="date" id="startDate"
 				name="startDate" value="${popupStore.startDate}" required /> <label
 				for="endDate">종료 날짜</label> <input type="date" id="endDate"
-				name="endDate" value="${popupStore.endDate}" /> <label for="images">현재
-				이미지</label>
+				name="endDate" value="${popupStore.endDate}" /> 
+				
+				<label for="images">현재 이미지</label>
 			<div id="currentImages">
 				<c:forEach var="image" items="${images}">
 					<div class="image-wrapper">
-						<img src="${image.filePath}" alt="이미지" /> <input type="hidden"
-							name="existingImages" value="${image.imageId}"
+						<img src="/image/${image.imageId}" alt="이미지" /> 
+						<input type="hidden" name="existingImages" value="${image.imageId}"
 							id="hiddenImage-${image.imageId}" />
 						<button type="button" data-id="${image.imageId}"
 							onclick="removeImage(this)">X</button>
