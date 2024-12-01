@@ -1,0 +1,54 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:security="http://www.springframework.org/schema/security"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+                           http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security.xsd">
+
+	<!-- PasswordEncoder Bean -->
+	<bean id="passwordEncoder"
+		class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder" />
+
+	<!-- Custom Handlers -->
+	<bean id="customAccessDenied"
+		class="net.developia.security.CustomAccessDeniedHandler" />
+	<bean id="customLoginSuccess"
+		class="net.developia.security.CustomLoginSuccessHandler" />
+
+	<!-- Security Configuration -->
+	<security:http>
+		<security:csrf disabled="true" />
+		<security:intercept-url pattern="/member/login"
+			access="permitAll" />
+		<security:intercept-url
+			pattern="/member/register" access="permitAll" />
+		<security:intercept-url pattern="/store/**"
+			access="permitAll" />
+		<security:intercept-url pattern="/resources/**"
+			access="permitAll" />
+		<security:intercept-url pattern="/**"
+			access="isAuthenticated()" />
+
+		<security:form-login login-page="/member/login"
+			login-processing-url="/member/login"
+			default-target-url="/store/list"
+			authentication-failure-url="/member/login?error=true" />
+
+		<security:access-denied-handler
+			ref="customAccessDenied" />
+
+		<!-- 로그아웃 설정 -->
+		<security:logout logout-url="/member/logout"
+			logout-success-url="/store/list" invalidate-session="true"
+			delete-cookies="JSESSIONID" />
+	</security:http>
+
+	<security:authentication-manager>
+		<security:authentication-provider>
+			<security:jdbc-user-service
+				data-source-ref="dataSource" />
+			<!-- Reference the PasswordEncoder Bean -->
+			<security:password-encoder
+				ref="passwordEncoder" />
+		</security:authentication-provider>
+	</security:authentication-manager>
+</beans>

@@ -1,4 +1,26 @@
-target/
+# IDE 및 설정 파일
+.settings/
+.classpath
+.project
+.springBeans
+
+# 빌드 파일 및 디렉토리
+/bin/
+/build/
+/target/
+
+# 로그 파일
+*.log
+
+# 시스템 파일
+.DS_Store
+Thumbs.db
+
+# Maven 및 기타 환경설정
+*.iml
+*.mvn/
+*.idea/
+*.gradle/
 pom.xml.tag
 pom.xml.releaseBackup
 pom.xml.versionsBackup
@@ -6,12 +28,12 @@ pom.xml.next
 release.properties
 dependency-reduced-pom.xml
 buildNumber.properties
-.mvn/timing.properties
-# https://github.com/takari/maven-wrapper#usage-without-binary-jar
-.mvn/wrapper/maven-wrapper.jar
 
-# Eclipse m2e generated files
-# Eclipse Core
-.project
-# JDT-specific (Eclipse Java Development Tools)
-.classpath
+# Resource 및 Vendor 파일
+src/main/webapp/resources/vendor/
+src/main/webapp/resources/data/
+src/main/webapp/resources/dist/
+src/main/webapp/resources/css/
+src/main/webapp/resources/less/
+src/main/webapp/resources/pages/
+src/main/webapp/resources/html/
