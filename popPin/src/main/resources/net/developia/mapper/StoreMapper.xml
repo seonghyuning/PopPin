@@ -3,14 +3,17 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="net.developia.mapper.StoreMapper">
 
-	<!-- 팝업스토어 신청 (status = 0으로 설정) -->
-    <insert id="register" parameterType="net.developia.domain.PopUpStoreVO">
-        INSERT INTO POPUPSTORES (
-            STORE_ID, NAME, LOCATION, DESCRIPTION, START_DATE, END_DATE, VIEWS, CREATED_BY, STATUS
-        ) VALUES (
-            STORE_SEQ.nextval, #{name}, #{location}, #{description}, #{startDate}, #{endDate}, 0, #{createdBy}, 0
-        )
-    </insert>
+	<!-- 관리자가 팝업스토어 신청 목록 조회 (status = 0) -->
+    <select id="getAddStoreList" resultType="net.developia.domain.PopUpStoreVO">
+	    SELECT *
+		FROM POPUPSTORES
+		WHERE STATUS = 0
+	</select>
+    
+    <select id="getAllImages" resultType="net.developia.domain.ImageVO">
+    	SELECT * FROM IMAGES
+    </select>
+    
 
     <!-- 관리자가 팝업스토어 신청 목록 조회 (status = 0) -->
     <select id="getPendingStores" resultType="net.developia.domain.PopUpStoreVO">
@@ -104,8 +107,5 @@
 	    FROM POPUPSTORE_LOCATIONS a
 	    JOIN POPUPSTORES b ON a.STORE_ID = b.STORE_ID
 	</select>
-	<!-- 스토어 지도 검색 -->
-	
-	
 
 </mapper>

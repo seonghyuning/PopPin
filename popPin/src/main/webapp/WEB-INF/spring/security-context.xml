@@ -27,6 +27,7 @@
 			access="permitAll" />
 		<security:intercept-url pattern="/**"
 			access="isAuthenticated()" />
+		<security:intercept-url pattern="/mypage/**" access="hasRole('ROLE_MEMBER')" /> <!-- 수정 -->
 
 		<security:form-login login-page="/member/login"
 			login-processing-url="/member/login"

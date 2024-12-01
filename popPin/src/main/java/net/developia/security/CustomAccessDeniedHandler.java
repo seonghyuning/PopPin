@@ -15,7 +15,8 @@ import lombok.extern.log4j.Log4j;
 public class CustomAccessDeniedHandler implements AccessDeniedHandler {
 
     @Override
-    public void handle(HttpServletRequest request, HttpServletResponse response, AccessDeniedException accessDeniedException)
+    public void handle(HttpServletRequest request, HttpServletResponse response,
+            AccessDeniedException accessDeniedException)
             throws IOException, ServletException {
         log.error("Access Denied Handler - Handling Unauthorized Access");
 

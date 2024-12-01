@@ -3,6 +3,7 @@ package net.developia.service;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import lombok.AllArgsConstructor;
 import net.developia.domain.PopUpStoreVO;
@@ -10,13 +11,18 @@ import net.developia.mapper.PopupStoreMapper;
 
 @Service
 @AllArgsConstructor
-public class PopupStoreServiceImpl implements PopupStoreService{
+public class PopupStoreServiceImpl implements PopupStoreService {
 	private PopupStoreMapper storemapper;
 
+	private ImageService imageService; // 추가
+
 	// 사용자 팝업 스토어 신청
+	@Transactional
 	@Override
 	public void registerPopupStore(PopUpStoreVO popupStore) {
+		// 팝업스토어 등록
 		storemapper.registerPopupStore(popupStore);
+		// MyBatis를 통해 storeId가 popupStore에 설정됨
 	}
 
 	// 대기 팝업 목록 조회(status = 0)
@@ -24,7 +30,7 @@ public class PopupStoreServiceImpl implements PopupStoreService{
 	public List<PopUpStoreVO> getPopupStoresByUser(String username) {
 		return storemapper.getPopupStoresByUser(username);
 	}
-	
+
 	// 승인 팝업 목록 조회(status = 1)
 	@Override
 	public List<PopUpStoreVO> getApprovePopupStoresByUser(String username) {
@@ -54,5 +60,4 @@ public class PopupStoreServiceImpl implements PopupStoreService{
 	public int deletePopupStore(Long storeId) {
 		return storemapper.deletePopupStore(storeId);
 	}
-	
 }

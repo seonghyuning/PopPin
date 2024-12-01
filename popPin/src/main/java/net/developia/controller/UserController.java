@@ -32,10 +32,10 @@ public class UserController {
 
 	@Autowired
 	private PasswordEncoder passwordEncoder;
-	
+
 	@Autowired
 	private LikeService likeService;
-	
+
 	@Autowired
 	private StoreService storeService;
 
@@ -51,7 +51,7 @@ public class UserController {
 			boolean isAuthenticated = userService.authenticate(email, password);
 
 			if (isAuthenticated) {
-				return "store/list"; 
+				return "store/list";
 			} else {
 				model.addAttribute("error", "Invalid email or password");
 				return "member/login";
@@ -141,52 +141,50 @@ public class UserController {
 	// 로그인 성공 시 마이페이지로 이동
 	@GetMapping("/mypage")
 	public String myPage(Model model) throws Exception {
-	    // 로그인된 사용자 정보 가져오기
-	    Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-	    String username = authentication.getName(); // 현재 로그인한 사용자의 username
+		// 로그인된 사용자 정보 가져오기
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		String username = authentication.getName(); // 현재 로그인한 사용자의 username
 
-	    if (username != null && !username.equals("anonymousUser")) {
-	        // 로그인된 사용자 정보 가져오기
-	        UserDTO user = userService.getUserByUsername(username);
-	        model.addAttribute("user", user);
+		if (username != null && !username.equals("anonymousUser")) {
+			// 로그인된 사용자 정보 가져오기
+			UserDTO user = userService.getUserByUsername(username);
+			model.addAttribute("user", user);
 
-	        // 좋아요한 팝업스토어 목록 가져오기
-	        List<PopUpStoreVO> likedStores = likeService.getLikedStores(username);
-	        model.addAttribute("likedStores", likedStores); // 모델에 추가
-	        
-	        List<PopUpStoreVO> stores = storeService.getList();
-        	// 이미지 데이터를 따로 가져오기
-            Map<Long, List<ImageVO>> imagesMap = new HashMap<>();
-            for (PopUpStoreVO store : stores) {
-                List<ImageVO> images = storeService.getImagesByStoreId(store.getStoreId());
-                imagesMap.put(store.getStoreId(), images);
-            }
-            
-            // 좋아요 상태 확인
-            Map<Long, Boolean> likedMap = new HashMap<>();
-            if (username != null && !username.equals("anonymousUser")) {
-                for (PopUpStoreVO store : stores) {
-                    LikeDTO like = new LikeDTO();
-                    like.setUsername(username);
-                    like.setStoreId(store.getStoreId());
-                    likedMap.put(store.getStoreId(), likeService.isLiked(like));
-                }
-            }
+			// 좋아요한 팝업스토어 목록 가져오기
+			List<PopUpStoreVO> likedStores = likeService.getLikedStores(username);
+			model.addAttribute("likedStores", likedStores); // 모델에 추가
 
-            model.addAttribute("imagesMap", imagesMap);
-            model.addAttribute("stores", stores);
-            model.addAttribute("likedMap", likedMap);
-            
+			List<PopUpStoreVO> stores = storeService.getList();
+			// 이미지 데이터를 따로 가져오기
+			Map<Long, List<ImageVO>> imagesMap = new HashMap<>();
+			for (PopUpStoreVO store : stores) {
+				List<ImageVO> images = storeService.getImagesByStoreId(store.getStoreId());
+				imagesMap.put(store.getStoreId(), images);
+			}
 
-	        return "member/mypage";
-	    }
+			// 좋아요 상태 확인
+			Map<Long, Boolean> likedMap = new HashMap<>();
+			if (username != null && !username.equals("anonymousUser")) {
+				for (PopUpStoreVO store : stores) {
+					LikeDTO like = new LikeDTO();
+					like.setUsername(username);
+					like.setStoreId(store.getStoreId());
+					likedMap.put(store.getStoreId(), likeService.isLiked(like));
+				}
+			}
 
-	    // 로그인되지 않은 경우
-	    model.addAttribute("error", "You must be logged in to access this page.");
-	    return "member/login";
+			model.addAttribute("imagesMap", imagesMap);
+			model.addAttribute("stores", stores);
+			model.addAttribute("likedMap", likedMap);
+
+			return "member/mypage";
+		}
+
+		// 로그인되지 않은 경우
+		model.addAttribute("error", "You must be logged in to access this page.");
+		return "member/login";
 	}
 
-	
 	// 내 정보 수정 페이지
 	@GetMapping("/edit")
 	public String editPage(Model model) {
