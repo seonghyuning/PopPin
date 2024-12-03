@@ -1,0 +1,455 @@
+@charset "UTF-8";
+
+body {
+    color: white;
+    background-color: #2c2c2c;
+}
+
+#logo {
+    width: 100%;
+    padding: 20px;
+}
+
+a {
+    width: 10%;
+    color: white;
+    text-decoration: none;
+}
+
+nav {
+    position: relative;
+    display: flex;             /* establish flex container */
+    align-items: center;       /* center ul container vertically */
+    justify-content: space-between;   /* center ul container horizontally (optional) */
+}
+
+.searchBar {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 30%;
+    height: 30px;
+    border-radius: 20px;
+    border: none;
+    padding: 20px;
+}
+
+.loginBtn {
+    cursor: pointer;
+    background-color: #EC221F;
+    font-weight: bold;
+    font-size: 16px;
+    color: white;
+    width: auto;
+    border: none;
+    border-radius: 50px;
+    padding: 10px 20px 10px 20px;
+}
+
+#mapBtn {
+    margin: 0 20px 0 20px;
+}
+
+.card {
+    width: 300px;
+    margin: 8px;
+    background-color: black;
+    position: relative;
+}
+
+.cardImg {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+}
+
+.cardContent {
+    color: white;
+    text-align: left;
+    padding: 0 10px 10px 10px;
+}
+
+.cardContainer {
+    width: 85%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-self: center;
+}
+
+.container {
+    color: white;
+    display: flex;
+    flex-wrap: wrap; /* Wrap items */
+    width: 70%; /* Set container width */
+    justify-self: center;
+}
+
+.detailImg {
+    width: 50%;
+    aspect-ratio: 1 / 1;
+    overflow: hidden;
+}
+
+.imgClass {
+    width: 100%; /* Make the image fill the container */
+    height: 100%; /* Make the image fill the container */
+    object-fit: cover;
+    
+}
+
+.detailText {
+    width: 50%;
+    aspect-ratio: 1 / 1;
+    overflow: hidden;
+    border: 1px solid white; /* Regular border */
+    padding: 1px; /* Add padding inside to create space for the border */
+    box-sizing: border-box;
+}
+
+.mapContainer {
+    margin-top: 50px;
+    margin-bottom: 0px;
+    width: 70%;
+    height: 500px;
+    justify-self: center;
+}
+
+.mapLocation {
+    width: 100%;
+    height: 80%;
+    background-color: wheat;
+    justify-self: center;
+}
+
+.cardListContainer {
+    width: 70%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-self: center;
+    row-gap: 20px;
+}
+
+.cardListItem {
+    position: relative;
+    width: 50%;
+    display: flex;
+}
+
+.cardListImg {
+    width: 30%;
+    height: 100%;
+    object-fit: cover;
+}
+
+svg {
+    padding-right: 10px;
+}
+
+h3 {
+    margin-top: 5px;
+}
+
+.likeButton {
+    background-color: black;
+    width: 15%;
+    aspect-ratio: 1 / 1;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    border: none;
+    display: flex; /* Enable flexbox */
+    justify-content: center; /* Center horizontally */
+    align-items: center;
+    border-radius: 50%;
+}
+
+.listButton {
+    top: auto;
+    bottom: 10px;
+    width: 10%;
+    right: 10px;
+    background-color: transparent;
+}
+
+.bi-heart {
+    color: white;
+    width: 80%;
+    height: auto;
+    padding: 0;
+}
+
+.bi-map {
+    padding: 0;
+}
+
+.bi-person-fill {
+    padding-right: 3px;
+}
+
+.dropbtn {
+    background-color: #EC221F;
+    color: white;
+    padding: 16px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+    vertical-align: middle;
+}
+  
+.dropdown {
+    max-width: fit-content;
+    margin-inline: auto;
+    display: inline-block;
+}
+
+.dropdown-content > button{
+    width: auto;
+    display: flex;
+    flex-direction: column;
+    border: none;
+    border-bottom: solid 1px;
+    background-color: transparent;
+    height: 40px;
+    width: 100%;
+    font-size: large;
+    justify-content: center;
+}
+  
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+  
+  
+.dropdown-content button:hover {
+    background-color: #2c2c2c;
+    color: white;
+}
+
+/* .dropdown-content label:hover {
+    background-color: #2c2c2c;
+    color: white;
+} */
+
+.dropdown-content label:hover {
+    background-color: #2c2c2c;
+    color: white;
+}
+  
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.dropdown-item{
+    position: relative;
+}
+
+.dropdown-item button, label{
+    color: black;
+    width: auto;
+    display: flex;
+    flex-direction: column;
+    border: none;
+    border-bottom: solid 1px;
+    background-color: transparent;
+    height: 40px;
+    width: 100%;
+    font-size: large;
+    justify-content: center;
+}
+
+.dropdown-submenu button {
+    color: black;
+    display: inline-block;
+    text-align: left;
+}
+
+.checkbox {
+    position: absolute;
+    right: 5px;
+}
+
+.dropdown-submenu {
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 100%; /* Position to the right of the parent */
+    background-color: #f1f1f1;
+    min-width: 160px;
+    z-index: 1;
+    text-align: left;
+}
+
+.dropdown-item:hover .dropdown-submenu {
+    display: block;
+}
+
+form {
+    text-align: center;
+}
+
+.resetButton {
+    height: 30px;
+    border: none;
+    cursor: pointer;
+}
+
+.bi-arrow-counterclockwise {
+    padding: 3px;
+    vertical-align: middle;
+}
+
+.resetButton:active {
+    background-color: darkgray
+}
+
+.loginForm {
+    position: relative;
+    padding: 40px;
+    border: solid 2px #EC221F;
+    margin-inline: auto;
+    width: 30%;
+}
+
+.loginForm label {
+    padding: 0;
+    display: flex;
+    justify-self: center;
+    width: 80%;
+    color: white;
+    text-align: left;
+    border: none;
+    /* background-color: #EC221F; */
+    font-size: medium;
+    font-weight: bold;
+}
+
+.loginForm input {
+    width: 80%;
+    height: 30px;
+    display: flex;
+    justify-self: center;
+    padding: 0;
+    margin-bottom: 10px;
+}
+
+#registerBtn {
+    margin-top: 20px;
+    width: 80%;
+    font-size: large;
+    height: 45px;
+}
+
+#loginBtn {
+    margin: 0 30px 0 20px;
+}
+
+#registerTitle {
+    margin-top: 0;
+}
+
+.myInfoContainer {
+    margin: 40px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    padding-bottom: 50px;
+    border-bottom: solid 4px;
+}
+
+.myInfoText {
+    padding: 30px 0 0 40px;
+}
+
+#proImg {
+    aspect-ratio: 1 /1;
+    width: 300px;
+    object-fit: cover;
+}
+
+#userName {
+    margin: 0;
+}
+
+#editBtn {
+    margin-top: 50px;
+    background-color: transparent;
+    border: solid white 2px;
+}
+
+.listBtn {
+    padding-left: 230px;
+    display: flex;
+    justify-content: center;
+    column-gap: 50px;
+}
+
+.myPageFilterBtn {
+    cursor: pointer;
+    background-color: transparent;
+    color: white;
+    border: none;
+    font-size: 30px;
+}
+
+#middleLine {
+    background-color: white;
+    height: 50px;
+    width: 2px;
+}
+
+#myPageSearchBar {
+    position: relative;
+    align-self: center;
+    margin: auto;
+    margin-top: 50px;
+    /* margin: 50px; */
+}
+
+.bi-suit-heart-fill, .bi-suit-heart{
+    color: white;
+    width: 80%;
+    height: auto;
+    padding: 0;
+}
+
+table {
+    background-color: white;
+    color: black;
+    border: #2c2c2c;
+    border-collapse: collapse; /* Ensures a single border */
+    border-width: 5px;
+    width: 50%; /* Optional, for full-width table */
+    min-width: 500px;
+    margin: auto;
+    margin-top: 50px;
+}
+
+th, td {
+    border: 5px solid #2c2c2c; /* Single line border for cells */
+    padding: 8px;
+    /* text-align: left; Optional, for text alignment */
+}
+
+th {
+    background-color: #EC221F;
+    color: white;
+}
+
+#storeRegButton {
+    width: 220px;
+    margin: 0;
+}
+
+#backButton {
+    position: absolute;
+    width: 100%;
+    left: 20px;
+    top: 20px;
+    text-align: left;
+}
